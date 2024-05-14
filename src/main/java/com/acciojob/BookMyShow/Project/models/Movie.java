@@ -29,8 +29,4 @@ public class Movie {
     private Language language;
 
     private Double rating;
-
-
-
-
 }
