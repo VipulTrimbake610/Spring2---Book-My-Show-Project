@@ -16,7 +16,7 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
-    @PostMapping("/add")
+    @PostMapping("add")
     public ResponseEntity addMovie(@RequestBody AddMovieRequest movieRequest){
         String result = movieService.addMovie(movieRequest);
         return new ResponseEntity(result, HttpStatus.OK);

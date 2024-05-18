@@ -7,6 +7,4 @@ public class AddTheaterSeatsRequest {
     private Integer theaterId;
     private Integer noOfClassicSeats;
     private Integer noOfPremiumSeats;
-
-
 }

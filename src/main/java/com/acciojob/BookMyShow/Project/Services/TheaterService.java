@@ -36,16 +36,18 @@ public class TheaterService {
 
     public String associateTheaterSeats(AddTheaterSeatsRequest addTheaterSeatsRequest){
         int theaterId = addTheaterSeatsRequest.getTheaterId();
-        int noOfClassicSeats = addTheaterSeatsRequest.getNoOfClassicSeats();
-        int noOfPremiumSeats = addTheaterSeatsRequest.getNoOfPremiumSeats();
+        int noOfClassicSeats = addTheaterSeatsRequest.getNoOfClassicSeats();  //6
+        int noOfPremiumSeats = addTheaterSeatsRequest.getNoOfPremiumSeats();  //7
 
         Theater theater = theaterRepository.findById(theaterId).get();
+
         List<TheaterSeat> theaterSeatList = new ArrayList<>();
 
-        int noOfRowsOfClassicSeats = noOfClassicSeats / 5;
-        int noOfSeatsInLastRow = noOfClassicSeats % 5;
 
-        for(int i=1;i<=noOfRowsOfClassicSeats;i++){
+        int noOfRowsOfClassicSeats = noOfClassicSeats / 5;   // 1
+        int noOfSeatsInLastRow = noOfClassicSeats % 5;   //1
+        int i;
+        for(i=1;i<=noOfRowsOfClassicSeats;i++){
             for(int j=1;j<=5;j++){
                 char ch = (char)('A'+j-1);
                 String seatNo = ""+i+ch;
@@ -59,11 +61,24 @@ public class TheaterService {
                 theaterSeatList.add(theaterSeat);
             }
         }
+        for(int j=1;j<=noOfSeatsInLastRow;j++){
+            char ch = (char)('A'+j-1);
+            String seatNo = ""+i+ch;
+
+            TheaterSeat theaterSeat = new TheaterSeat().builder()
+                    .seatNo(seatNo)
+                    .seatType(SeatType.CLASSIC)
+                    .theater(theater)
+                    .build();
+
+            theaterSeatList.add(theaterSeat);
+        }
+
 
         int noOfRowsOfPremiumSeats = noOfPremiumSeats / 5;
         noOfSeatsInLastRow = noOfPremiumSeats % 5;
 
-        for(int i=1;i<=noOfRowsOfPremiumSeats;i++){
+        for(i=1;i<=noOfRowsOfPremiumSeats;i++){
             for(int j=1;j<=5;j++){
                 char ch = (char)('A'+j-1);
                 String seatNo = ""+i+ch;
@@ -76,6 +91,19 @@ public class TheaterService {
 
                 theaterSeatList.add(theaterSeat);
             }
+        }
+
+        for(int j=1;j<=noOfSeatsInLastRow;j++){
+            char ch = (char)('A'+j-1);
+            String seatNo = ""+i+ch;
+
+            TheaterSeat theaterSeat = new TheaterSeat().builder()
+                    .seatNo(seatNo)
+                    .seatType(SeatType.PREMIUM)
+                    .theater(theater)
+                    .build();
+
+            theaterSeatList.add(theaterSeat);
         }
 
         theater.setTheaterSeatList(theaterSeatList);

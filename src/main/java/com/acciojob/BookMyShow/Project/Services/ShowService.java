@@ -44,17 +44,22 @@ public class ShowService {
         show = showRepository.save(show);
 
         // Associate the corresponding show seats along with it.
-        List<TheaterSeat> theaterSeatList = new ArrayList<>();
+        List<TheaterSeat> theaterSeatList = theater.getTheaterSeatList();
         List<ShowSeat> showSeatList = new ArrayList<>();
 
-        for(TheaterSeat theaterSeat : theaterSeatList){
+        for(TheaterSeat theaterSeat : theaterSeatList)
+        {
             ShowSeat showSeat = ShowSeat.builder()
                     .seatNo(theaterSeat.getSeatNo())
                     .isBooked(Boolean.FALSE)
                     .isFoodAttached(Boolean.FALSE)
                     .show(show)
                     .build();
+
+            showSeatList.add(showSeat);
         }
+
+
 
 
         show.setShowSeatList(showSeatList);

@@ -15,7 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TheaterSeat {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer theaterId;
+
     private String seatNo;
 
     @Enumerated(value = EnumType.STRING)
