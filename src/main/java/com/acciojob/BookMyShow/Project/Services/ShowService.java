@@ -56,6 +56,9 @@ public class ShowService {
                     .build();
         }
 
+
+        show.setShowSeatList(showSeatList);
+
         showSeatRepository.saveAll(showSeatList);
 
 

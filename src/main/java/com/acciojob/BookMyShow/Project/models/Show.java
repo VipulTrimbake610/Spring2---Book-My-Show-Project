@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "shows")
@@ -30,4 +31,8 @@ public class Show {
     @JoinColumn
     @ManyToOne
     private Theater theater;
+
+    @OneToMany(mappedBy = "show",cascade = CascadeType.ALL)
+    private List<ShowSeat> showSeatList;
+
 }

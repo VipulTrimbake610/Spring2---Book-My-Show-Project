@@ -26,4 +26,12 @@ public class Ticket {
     private  String theaterName;
     private Integer totalAmount;
 
+    @JoinColumn
+    @ManyToOne
+    private Show show;
+
+    @JoinColumn
+    @ManyToOne
+    private User user;
+
 }
