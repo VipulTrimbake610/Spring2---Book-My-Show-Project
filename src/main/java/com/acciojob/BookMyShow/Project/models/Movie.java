@@ -23,7 +23,7 @@ public class Movie {
 
     private Double duration;
 
-    private LocalDate releaseData;
+    private LocalDate releaseDate;
 
     @Enumerated(value = EnumType.STRING)
     private Language language;

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class ShowService {
         {
             ShowSeat showSeat = ShowSeat.builder()
                     .seatNo(theaterSeat.getSeatNo())
+                    .seatType(theaterSeat.getSeatType())
                     .isBooked(Boolean.FALSE)
                     .isFoodAttached(Boolean.FALSE)
                     .show(show)
@@ -68,6 +70,11 @@ public class ShowService {
 
 
         return "The Show has been saved to the DB with Show Id : "+show.getShowId();
+    }
+
+    public Show getShow(Integer id){
+        Show show = showRepository.findById(id).get();
+        return show;
     }
 
 }

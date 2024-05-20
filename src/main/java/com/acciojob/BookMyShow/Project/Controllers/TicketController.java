@@ -19,6 +19,7 @@ public class TicketController {
         return ticketService.bookTicket(bookTicketRequest);
     }
 
+    @GetMapping("generateTicket")
     public TicketResponse generateTicket(@RequestParam("ticketId") String ticketId){
         return ticketService.generateTicket(ticketId);
      }

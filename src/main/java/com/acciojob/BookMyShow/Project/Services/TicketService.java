@@ -31,11 +31,14 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepository;
 
+    @Autowired
+    private ShowService showService;
+
     public String bookTicket(BookTicketRequest bookTicketRequest){
-        Show show = showRepository.findById(bookTicketRequest.getUserId()).get();
 
         User user = userRepository.findById(bookTicketRequest.getUserId()).get();
-
+        Show show = showRepository.findById(bookTicketRequest.getShowId()).get();
+//        Show show = showService.getShow(bookTicketRequest.getShowId());
         Integer totalAmount = 0;
         List<ShowSeat> showSeatList = show.getShowSeatList();
         for (ShowSeat showSeat : showSeatList){
@@ -65,7 +68,6 @@ public class TicketService {
         ticket = ticketRepository.save(ticket);
 
         return ticket.getTicketId();
-
     }
 
     public TicketResponse generateTicket(String ticketId){

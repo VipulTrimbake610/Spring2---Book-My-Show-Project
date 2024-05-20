@@ -18,6 +18,8 @@ public class ShowSeat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer showSeatId;
     private String seatNo;
+
+    @Enumerated(value = EnumType.STRING)
     private SeatType seatType;
     private Boolean isBooked;
     private Boolean isFoodAttached;

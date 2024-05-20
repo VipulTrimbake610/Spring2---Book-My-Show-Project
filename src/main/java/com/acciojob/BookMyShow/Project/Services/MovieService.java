@@ -23,7 +23,7 @@ public class MovieService {
         movie.setMovieName(movieRequest.getMovieName());
         movie.setLanguage(movieRequest.getLanguage());
         movie.setRating(movieRequest.getRating());
-        movie.setReleaseData(movieRequest.getReleaseDate());
+        movie.setReleaseDate(movieRequest.getReleaseDate());
 
         movie = movieRepository.save(movie);
         return "Movie has been added to the DB with movie id : "+movie.getMovieId();
